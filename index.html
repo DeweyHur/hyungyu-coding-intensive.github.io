@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>코딩 인터뷰 집중반 | 배현규</title>
+    <title>코딩 인텐시브 10주 과정 | 배현규</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -20,23 +20,27 @@
         .tab-panel.active { display: block; }
         .session-row { transition: box-shadow 0.15s; cursor: pointer; }
         .session-row:hover { box-shadow: 0 0 0 2px #15803d33; }
+        .diff-easy   { color: #16a34a; font-weight: 700; font-size: 11px; }
+        .diff-medium { color: #d97706; font-weight: 700; font-size: 11px; }
+        .diff-hard   { color: #dc2626; font-weight: 700; font-size: 11px; }
+        .prob-row:hover { background: #f9fafb; }
+        .prob-row a { color: #1e40af; text-decoration: none; font-size: 13px; }
+        .prob-row a:hover { text-decoration: underline; }
     </style>
 </head>
 <body class="min-h-screen">
 
-    <!-- TOP NAVBAR -->
     <nav class="bg-[#111827] text-white px-6 py-3 flex items-center gap-3 text-sm">
-        <span class="font-black tracking-tight text-white text-base">코딩 인터뷰 집중반</span>
+        <span class="font-black tracking-tight text-white text-base">코딩 인텐시브 10주 과정</span>
         <span class="text-gray-500">|</span>
-        <span class="text-gray-400 text-xs">NeetCode Roadmap 기반 · 10주 완성 프로그램</span>
+        <span class="text-gray-400 text-xs">NeetCode Roadmap 기반 · 배현규</span>
     </nav>
 
-    <!-- HERO -->
     <div class="bg-gradient-to-b from-[#14532d] to-[#15803d] text-white pt-14 pb-24 px-6 text-center">
         <span class="bg-white/15 border border-white/20 text-white text-[10px] font-bold tracking-[0.18em] uppercase px-4 py-1.5 rounded-full inline-block mb-5">
-            10-WEEK CODING INTENSIVE
+            CODING INTENSIVE · 10 WEEKS
         </span>
-        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mt-1">배현규의 코딩 인터뷰</h1>
+        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mt-1">배현규의 코딩 인텐시브</h1>
         <p class="text-green-200 mt-3 text-sm font-medium opacity-90">알고리즘 · 자료구조 · NeetCode Roadmap · Edge AI 직무 대비</p>
         <a href="https://neetcode.io/roadmap" target="_blank"
            class="inline-flex items-center gap-2 mt-5 bg-white/20 hover:bg-white/30 border border-white/30 text-white text-xs font-bold px-5 py-2 rounded-full transition-all">
@@ -44,7 +48,6 @@
         </a>
     </div>
 
-    <!-- STUDENT INFO BAR -->
     <div class="max-w-3xl mx-auto -mt-12 bg-[#e9ebee] rounded-2xl shadow grid grid-cols-2 md:grid-cols-4 overflow-hidden border border-gray-200 relative z-10">
         <div class="p-5 text-center border-r border-gray-300">
             <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-1">Student</p>
@@ -64,15 +67,13 @@
         </div>
     </div>
 
-    <!-- MAIN CONTENT -->
     <div class="max-w-3xl mx-auto mt-8 px-4 pb-20">
 
-        <!-- TAB NAV -->
         <div class="tab-scroll flex gap-1.5 overflow-x-auto pb-1 mb-5">
             <button class="tab-btn active text-xs font-bold px-4 py-2 rounded-full" onclick="switchTab('overview', this)">Overview</button>
             <button class="tab-btn text-xs font-bold px-4 py-2 rounded-full" onclick="switchTab('w1', this)">1&nbsp;기초 + Big O</button>
             <button class="tab-btn text-xs font-bold px-4 py-2 rounded-full" onclick="switchTab('w2', this)">2&nbsp;Array & Hashing</button>
-            <button class="tab-btn text-xs font-bold px-4 py-2 rounded-full" onclick="switchTab('w3', this)">3&nbsp;Two Pointers + SW</button>
+            <button class="tab-btn text-xs font-bold px-4 py-2 rounded-full" onclick="switchTab('w3', this)">3&nbsp;TP · SW · Intervals</button>
             <button class="tab-btn text-xs font-bold px-4 py-2 rounded-full" onclick="switchTab('w4', this)">4&nbsp;Stack + Linked List</button>
             <button class="tab-btn text-xs font-bold px-4 py-2 rounded-full" onclick="switchTab('w5', this)">5&nbsp;Binary Search</button>
             <button class="tab-btn text-xs font-bold px-4 py-2 rounded-full" onclick="switchTab('w6', this)">6&nbsp;Trees</button>
@@ -82,12 +83,11 @@
             <button class="tab-btn text-xs font-bold px-4 py-2 rounded-full" onclick="switchTab('w10', this)">10&nbsp;Mock Interview</button>
         </div>
 
-        <!-- OVERVIEW PANEL -->
         <div id="panel-overview" class="tab-panel active space-y-4">
             <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
                 <div class="flex justify-between items-center mb-3">
                     <span class="text-sm font-bold text-gray-700">Progress</span>
-                    <span class="text-green-700 font-extrabold text-sm">0 / 10 Weeks</span>
+                    <span class="text-green-700 font-extrabold text-sm" id="progress-label">0 / 10 Weeks</span>
                 </div>
                 <div class="w-full bg-gray-100 rounded-full h-2">
                     <div class="bg-green-700 h-2 rounded-full" style="width: 0%" id="progress-bar"></div>
@@ -115,194 +115,382 @@
                         <td class="font-bold text-gray-500 pr-4 align-top py-1.5">목표 직무</td>
                         <td class="py-1.5">Factory AI / Industry AI · Sensor Fusion 활용 Edge AI 엔지니어</td>
                     </tr>
-                    <tr>
-                        <td class="font-bold text-gray-500 pr-4 align-top py-1.5">제거 항목</td>
-                        <td class="py-1.5">Tries (출제 빈도 낮음) · Bit Manipulation (산업 AI 직무 기준 ROI 최하)</td>
-                    </tr>
                 </table>
             </div>
         </div>
 
-        <!-- WEEK PANELS (generated by JS) -->
-        <div id="panel-w1" class="tab-panel"></div>
-        <div id="panel-w2" class="tab-panel"></div>
-        <div id="panel-w3" class="tab-panel"></div>
-        <div id="panel-w4" class="tab-panel"></div>
-        <div id="panel-w5" class="tab-panel"></div>
-        <div id="panel-w6" class="tab-panel"></div>
-        <div id="panel-w7" class="tab-panel"></div>
-        <div id="panel-w8" class="tab-panel"></div>
-        <div id="panel-w9" class="tab-panel"></div>
+        <div id="panel-w1"  class="tab-panel"></div>
+        <div id="panel-w2"  class="tab-panel"></div>
+        <div id="panel-w3"  class="tab-panel"></div>
+        <div id="panel-w4"  class="tab-panel"></div>
+        <div id="panel-w5"  class="tab-panel"></div>
+        <div id="panel-w6"  class="tab-panel"></div>
+        <div id="panel-w7"  class="tab-panel"></div>
+        <div id="panel-w8"  class="tab-panel"></div>
+        <div id="panel-w9"  class="tab-panel"></div>
         <div id="panel-w10" class="tab-panel"></div>
     </div>
 
     <script>
+    // difficulty helper
+    function diff(d) {
+        const cls = d === 'Easy' ? 'diff-easy' : d === 'Medium' ? 'diff-medium' : 'diff-hard';
+        return `<span class="${cls}">${d}</span>`;
+    }
+
+    function tagBadge(tag, color) {
+        return `<span style="background:${color}18;color:${color};border:1px solid ${color}44;" class="text-[10px] font-bold px-2.5 py-0.5 rounded-md flex-shrink-0">${tag}</span>`;
+    }
+
+    // Render a flat problem list as a table
+    function probTable(problems) {
+        const rows = problems.map(p => `
+            <tr class="prob-row border-b border-gray-50 last:border-0">
+                <td class="py-2.5 pl-4">
+                    <a href="${p.url}" target="_blank">${p.name} <i class="fas fa-external-link-alt text-[9px] text-gray-400 ml-1"></i></a>
+                </td>
+                <td class="py-2.5 pr-4 text-right">${diff(p.d)}</td>
+            </tr>`).join('');
+        return `<table class="w-full"><thead><tr class="text-[10px] font-black uppercase tracking-widest text-gray-400 border-b border-gray-100">
+            <td class="pb-2 pl-4">Problem</td><td class="pb-2 pr-4 text-right">Difficulty</td></tr></thead>
+            <tbody>${rows}</tbody></table>`;
+    }
+
+    // Render sectioned problems (e.g. Week 3 with Two Pointers / SW / Intervals)
+    function probSections(sections) {
+        return sections.map(s => `
+            <div class="mb-1">
+                <div class="px-4 py-2 bg-gray-50 border-b border-gray-100">
+                    <span class="text-[10px] font-black uppercase tracking-widest text-gray-500">${s.title}</span>
+                </div>
+                ${probTable(s.problems)}
+            </div>`).join('');
+    }
+
     const weeks = [
         {
             id: "w1", week: 1,
             title: "코딩 기초 + Big O",
             tag: "기초", tagColor: "#7c3aed",
             status: "Upcoming",
-            desc: "Python 문법을 빠르게 훑고, 코딩 인터뷰의 언어인 Big O 표기법을 완전히 잡는다. 시간/공간 복잡도를 코드를 보고 바로 읽어내는 눈을 기른다. 이론보다 실제 코드를 직접 작성하고 테스트하는 데 집중.",
+            desc: "Python 문법을 빠르게 훑고, 코딩 인터뷰의 언어인 Big O 표기법을 잡는다. 시간/공간 복잡도를 코드를 보고 즉시 읽어내는 눈을 기른다. 이론보다 실제 코드를 직접 작성하는 데 집중.",
             topics: [
                 "Python 핵심 문법 — 리스트, 딕셔너리, 집합, 조건문, 반복문, 함수",
-                "Big O 표기법 — O(1), O(log n), O(n), O(n log n), O(n²) 직관적으로 이해",
-                "시간/공간 복잡도 분석 — 코드 보고 복잡도 즉시 읽기 연습",
-                "NeetCode Big O 영상 정주행 + 간단한 예제 직접 구현"
+                "Big O 표기법 — O(1) · O(log n) · O(n) · O(n log n) · O(n²) 직관적으로 이해",
+                "시간/공간 복잡도 분석 — 코드를 보고 복잡도 즉시 읽기 연습"
             ],
             topicTags: ["Python", "Big O", "Time Complexity", "Space Complexity"],
-            problems: "Two Sum (Easy) · Contains Duplicate (Easy) · 직접 선택 1문제",
-            homework: "NeetCode Big O 영상 시청 완료\n풀어본 문제 각각 복잡도 분석 코멘트 달기\nPython heapq, collections.defaultdict, deque 사용법 숙지"
+            resources: [
+                { name: "NeetCode — Big O Notation (DSA for Beginners)", url: "https://neetcode.io/courses/dsa-for-beginners/0" }
+            ],
+            problems: [
+                { name: "Contains Duplicate",  url: "https://leetcode.com/problems/contains-duplicate/",  d: "Easy" },
+                { name: "Two Sum",             url: "https://leetcode.com/problems/two-sum/",             d: "Easy" }
+            ]
         },
         {
             id: "w2", week: 2,
             title: "Array & Hashing",
             tag: "기초", tagColor: "#7c3aed",
             status: "Upcoming",
-            desc: "해시맵과 해시셋은 코딩 인터뷰에서 가장 많이 쓰이는 도구다. O(n) 풀이를 O(1) 조회로 끌어내리는 '해시로 교환' 패턴을 확실히 익힌다. Contains Duplicate, Two Sum, Valid Anagram 세 문제가 이 주의 핵심.",
+            desc: "해시맵과 해시셋은 코딩 인터뷰에서 가장 많이 쓰이는 도구다. O(n²) 풀이를 O(1) 조회로 끌어내리는 '해시로 교환' 패턴을 확실히 익힌다.",
             topics: [
                 "배열 기본 연산 — 인덱싱, 슬라이싱, 정렬, 빈도 카운팅",
-                "HashMap (dict) 원리 — 키-값 저장, O(1) 조회, 충돌 처리 개념",
+                "HashMap (dict) 원리 — 키-값 저장, O(1) 조회",
                 "HashSet (set) 활용 — 중복 제거, O(1) 포함 여부 확인",
-                "빈도 카운팅 패턴 — collections.Counter 활용법"
+                "빈도 카운팅 패턴 — collections.Counter 활용"
             ],
-            topicTags: ["Array", "HashMap", "HashSet", "Counter", "Frequency"],
-            problems: "Contains Duplicate · Valid Anagram · Two Sum · Group Anagrams · Top K Frequent Elements",
-            homework: "위 5문제 직접 풀기 (못 풀면 풀이 보고 직접 다시 작성)\n각 풀이 시간/공간 복잡도 작성"
+            topicTags: ["Array", "HashMap", "HashSet", "Counter"],
+            problems: [
+                { name: "Contains Duplicate",           url: "https://leetcode.com/problems/contains-duplicate/",                d: "Easy"   },
+                { name: "Valid Anagram",                url: "https://leetcode.com/problems/valid-anagram/",                     d: "Easy"   },
+                { name: "Two Sum",                      url: "https://leetcode.com/problems/two-sum/",                           d: "Easy"   },
+                { name: "Group Anagrams",               url: "https://leetcode.com/problems/group-anagrams/",                    d: "Medium" },
+                { name: "Top K Frequent Elements",      url: "https://leetcode.com/problems/top-k-frequent-elements/",           d: "Medium" },
+                { name: "Encode and Decode Strings",    url: "https://neetcode.io/problems/string-encode-and-decode",            d: "Medium" },
+                { name: "Product of Array Except Self", url: "https://leetcode.com/problems/product-of-array-except-self/",      d: "Medium" },
+                { name: "Valid Sudoku",                 url: "https://leetcode.com/problems/valid-sudoku/",                      d: "Medium" },
+                { name: "Longest Consecutive Sequence", url: "https://leetcode.com/problems/longest-consecutive-sequence/",      d: "Medium" }
+            ]
         },
         {
             id: "w3", week: 3,
-            title: "Two Pointers + Sliding Window",
+            title: "Two Pointers + Sliding Window + Intervals",
             tag: "기초", tagColor: "#7c3aed",
             status: "Upcoming",
-            desc: "두 포인터와 슬라이딩 윈도우는 같은 뿌리에서 나온 패턴이다. 배열/문자열에서 O(n²)을 O(n)으로 줄이는 핵심 기법. 두 패턴을 함께 익혀야 어느 상황에 뭘 쓸지 구분이 된다.",
+            desc: "세 패턴 모두 배열/문자열에서 O(n²)을 O(n)으로 줄이는 기법이다. Two Pointers는 양 끝에서 수렴, Sliding Window는 구간을 밀어가며 탐색, Intervals는 정렬 후 구간 병합이 핵심. Intervals는 센서 스케줄링·시계열 데이터에서 자주 등장하는 AI 직무 필수 패턴이다.",
             topics: [
                 "Two Pointers — left/right 수렴형 (정렬된 배열), 동일 방향형",
-                "Sliding Window 고정 크기 — 윈도우를 오른쪽으로 한 칸씩 이동",
-                "Sliding Window 가변 크기 — 조건 만족할 때 expand, 위반 시 shrink",
-                "언제 두 포인터, 언제 슬라이딩 윈도우인지 구분 기준 정리"
+                "Sliding Window 고정/가변 — 조건 만족 시 expand, 위반 시 shrink",
+                "Intervals — 정렬 후 겹침 여부 판단, 병합 패턴"
             ],
-            topicTags: ["Two Pointers", "Sliding Window", "O(n)", "Window Expand/Shrink"],
-            problems: "Valid Palindrome · Two Sum II · Best Time to Buy and Sell Stock · Longest Substring Without Repeating Characters · Minimum Window Substring",
-            homework: "5문제 완료\nSliding Window 가변 크기 템플릿 코드 암기 (직접 써보기)"
+            topicTags: ["Two Pointers", "Sliding Window", "Intervals", "O(n)"],
+            sections: [
+                {
+                    title: "Two Pointers",
+                    problems: [
+                        { name: "Valid Palindrome",            url: "https://leetcode.com/problems/valid-palindrome/",                        d: "Easy"   },
+                        { name: "Two Sum II",                  url: "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/",         d: "Medium" },
+                        { name: "3Sum",                        url: "https://leetcode.com/problems/3sum/",                                    d: "Medium" },
+                        { name: "Container With Most Water",   url: "https://leetcode.com/problems/container-with-most-water/",               d: "Medium" },
+                        { name: "Trapping Rain Water",         url: "https://leetcode.com/problems/trapping-rain-water/",                     d: "Hard"   }
+                    ]
+                },
+                {
+                    title: "Sliding Window",
+                    problems: [
+                        { name: "Best Time to Buy and Sell Stock",              url: "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/",                  d: "Easy"   },
+                        { name: "Longest Substring Without Repeating Chars",    url: "https://leetcode.com/problems/longest-substring-without-repeating-characters/",   d: "Medium" },
+                        { name: "Longest Repeating Character Replacement",      url: "https://leetcode.com/problems/longest-repeating-character-replacement/",          d: "Medium" },
+                        { name: "Permutation in String",                        url: "https://leetcode.com/problems/permutation-in-string/",                           d: "Medium" },
+                        { name: "Minimum Window Substring",                     url: "https://leetcode.com/problems/minimum-window-substring/",                        d: "Hard"   },
+                        { name: "Sliding Window Maximum",                       url: "https://leetcode.com/problems/sliding-window-maximum/",                          d: "Hard"   }
+                    ]
+                },
+                {
+                    title: "Intervals",
+                    problems: [
+                        { name: "Insert Interval",           url: "https://leetcode.com/problems/insert-interval/",           d: "Medium" },
+                        { name: "Merge Intervals",           url: "https://leetcode.com/problems/merge-intervals/",           d: "Medium" },
+                        { name: "Non-overlapping Intervals", url: "https://leetcode.com/problems/non-overlapping-intervals/", d: "Medium" },
+                        { name: "Meeting Rooms",             url: "https://neetcode.io/problems/meeting-schedule",            d: "Easy"   },
+                        { name: "Meeting Rooms II",          url: "https://neetcode.io/problems/meeting-schedule-ii",         d: "Medium" }
+                    ]
+                }
+            ]
         },
         {
             id: "w4", week: 4,
             title: "Stack + Linked List",
             tag: "기초", tagColor: "#7c3aed",
             status: "Upcoming",
-            desc: "스택은 '가장 최근 것을 추적'하는 패턴의 핵심. 연결 리스트는 포인터 조작 능력을 기르는 기초 자료구조. 둘 다 선형이지만 용도가 완전히 다르므로 각각 2~3문제씩 패턴을 익힌다.",
+            desc: "스택은 '가장 최근 것을 추적'하는 패턴의 핵심. 연결 리스트는 포인터 조작 능력을 기르는 기초 자료구조. 둘 다 선형이지만 활용 패턴이 완전히 다르다.",
             topics: [
-                "Stack — LIFO 원리, Python list 스택 활용, 단조 스택(Monotonic Stack) 개념",
-                "괄호 매칭 패턴 — 스택으로 여는/닫는 괄호 대응",
-                "단일 연결 리스트 구조 — Node, head, next 포인터",
-                "연결 리스트 핵심 기법 — 두 포인터(fast/slow), 역순 변환, 더미 노드"
+                "Stack — LIFO 원리, 괄호 매칭, 단조 스택(Monotonic Stack)",
+                "Linked List — Node 구조, fast/slow 포인터, 역순 변환, 더미 노드"
             ],
-            topicTags: ["Stack", "Linked List", "LIFO", "Pointer", "Fast/Slow Pointers"],
-            problems: "Valid Parentheses · Min Stack · Reverse Linked List · Merge Two Sorted Lists · Linked List Cycle",
-            homework: "5문제 완료\nReverse Linked List 외워서 백지에 다시 쓰기 (포인터 흐름 이해 필수)"
+            topicTags: ["Stack", "Linked List", "LIFO", "Fast/Slow Pointers"],
+            sections: [
+                {
+                    title: "Stack",
+                    problems: [
+                        { name: "Valid Parentheses",                  url: "https://leetcode.com/problems/valid-parentheses/",                    d: "Easy"   },
+                        { name: "Min Stack",                          url: "https://leetcode.com/problems/min-stack/",                            d: "Medium" },
+                        { name: "Evaluate Reverse Polish Notation",   url: "https://leetcode.com/problems/evaluate-reverse-polish-notation/",     d: "Medium" },
+                        { name: "Generate Parentheses",               url: "https://leetcode.com/problems/generate-parentheses/",                 d: "Medium" },
+                        { name: "Daily Temperatures",                 url: "https://leetcode.com/problems/daily-temperatures/",                   d: "Medium" },
+                        { name: "Car Fleet",                          url: "https://leetcode.com/problems/car-fleet/",                            d: "Medium" },
+                        { name: "Largest Rectangle in Histogram",     url: "https://leetcode.com/problems/largest-rectangle-in-histogram/",       d: "Hard"   }
+                    ]
+                },
+                {
+                    title: "Linked List",
+                    problems: [
+                        { name: "Reverse Linked List",                url: "https://leetcode.com/problems/reverse-linked-list/",                  d: "Easy"   },
+                        { name: "Merge Two Sorted Lists",             url: "https://leetcode.com/problems/merge-two-sorted-lists/",               d: "Easy"   },
+                        { name: "Linked List Cycle",                  url: "https://leetcode.com/problems/linked-list-cycle/",                    d: "Easy"   },
+                        { name: "Reorder List",                       url: "https://leetcode.com/problems/reorder-list/",                         d: "Medium" },
+                        { name: "Remove Nth Node From End",           url: "https://leetcode.com/problems/remove-nth-node-from-end-of-list/",     d: "Medium" },
+                        { name: "Copy List with Random Pointer",      url: "https://leetcode.com/problems/copy-list-with-random-pointer/",        d: "Medium" },
+                        { name: "Add Two Numbers",                    url: "https://leetcode.com/problems/add-two-numbers/",                      d: "Medium" },
+                        { name: "Find the Duplicate Number",          url: "https://leetcode.com/problems/find-the-duplicate-number/",            d: "Medium" },
+                        { name: "LRU Cache",                          url: "https://leetcode.com/problems/lru-cache/",                            d: "Medium" },
+                        { name: "Merge K Sorted Lists",               url: "https://leetcode.com/problems/merge-k-sorted-lists/",                 d: "Hard"   }
+                    ]
+                }
+            ]
         },
         {
             id: "w5", week: 5,
             title: "Binary Search",
             tag: "자료구조", tagColor: "#0891b2",
             status: "Upcoming",
-            desc: "이분 탐색은 '정렬된 공간에서 절반씩 버리기'다. 기본 템플릿을 완벽히 외우고, 조건에 따른 lo/hi 이동 방향을 틀리지 않도록 훈련한다. Parametric Search(답에 대한 이분 탐색)까지 이해하면 응용 범위가 크게 늘어난다.",
+            desc: "이분 탐색은 '정렬된 공간에서 절반씩 버리기'다. lo/hi/mid 템플릿을 완벽히 익히고, Parametric Search(답에 대한 이분 탐색)까지 이해하면 응용 범위가 크게 넓어진다.",
             topics: [
                 "이분 탐색 기본 템플릿 — lo, hi, mid = (lo+hi)//2, 종료 조건",
                 "lo/hi 이동 패턴 — lo=mid+1 vs hi=mid-1 언제 어떻게 쓰는지",
-                "회전 정렬 배열에서 이분 탐색 — 어느 쪽이 정렬됐는지 판단",
+                "회전 정렬 배열 — 어느 쪽이 정렬됐는지 판단하는 로직",
                 "Parametric Search — 최솟값/최댓값을 이분 탐색으로 구하는 패턴"
             ],
             topicTags: ["Binary Search", "Sorted Array", "Rotated Array", "Parametric Search"],
-            problems: "Binary Search · Search a 2D Matrix · Koko Eating Bananas · Find Minimum in Rotated Sorted Array · Search in Rotated Sorted Array",
-            homework: "5문제 완료\n이분 탐색 템플릿 백지에 작성 (off-by-one 없이)"
+            problems: [
+                { name: "Binary Search",                        url: "https://leetcode.com/problems/binary-search/",                           d: "Easy"   },
+                { name: "Search a 2D Matrix",                   url: "https://leetcode.com/problems/search-a-2d-matrix/",                      d: "Medium" },
+                { name: "Koko Eating Bananas",                  url: "https://leetcode.com/problems/koko-eating-bananas/",                     d: "Medium" },
+                { name: "Find Minimum in Rotated Sorted Array", url: "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/",    d: "Medium" },
+                { name: "Search in Rotated Sorted Array",       url: "https://leetcode.com/problems/search-in-rotated-sorted-array/",          d: "Medium" },
+                { name: "Time Based Key-Value Store",           url: "https://leetcode.com/problems/time-based-key-value-store/",              d: "Medium" },
+                { name: "Median of Two Sorted Arrays",          url: "https://leetcode.com/problems/median-of-two-sorted-arrays/",             d: "Hard"   }
+            ]
         },
         {
             id: "w6", week: 6,
             title: "Trees",
             tag: "자료구조", tagColor: "#0891b2",
             status: "Upcoming",
-            desc: "트리는 재귀적 구조이므로 재귀적 사고를 이 주에 완전히 익혀야 한다. DFS(전위/중위/후위)와 BFS(레벨 순회)의 차이를 이해하고, '왼쪽과 오른쪽에서 값을 받아 현재 노드에서 무엇을 할지'라는 재귀 설계 패턴을 습득한다.",
+            desc: "트리는 재귀적 구조다. '왼쪽과 오른쪽에서 값을 받아 현재 노드에서 무엇을 할지'라는 재귀 설계 패턴을 이 주에 완전히 익혀야 한다. DFS(전위/중위/후위)와 BFS(레벨 순회)의 차이를 이해하고 BST 특성까지 연결한다.",
             topics: [
-                "이진 트리 구조 — TreeNode 클래스, 높이, 깊이, 균형 개념",
-                "DFS 3종 순회 — 전위(pre), 중위(in), 후위(post) 재귀 구현",
+                "이진 트리 — TreeNode 구조, 높이/깊이, 전위·중위·후위 순회",
+                "DFS 재귀 설계 — 왼쪽/오른쪽 결과를 현재 노드에서 합치기",
                 "BFS 레벨 순회 — deque, 레벨별 처리 패턴",
-                "재귀 설계 패턴 — 왼쪽/오른쪽 결과를 현재 노드에서 합치기"
+                "BST 특성 — 중위 순회 = 정렬, LCA, 검색/삽입"
             ],
-            topicTags: ["Binary Tree", "DFS", "BFS", "Recursion", "Level Order"],
-            problems: "Invert Binary Tree · Maximum Depth · Diameter of Binary Tree · Balanced Binary Tree · Lowest Common Ancestor · Binary Tree Level Order Traversal",
-            homework: "6문제 완료\nLCA와 Maximum Depth 재귀 흐름 손으로 그려보기"
+            topicTags: ["Binary Tree", "BST", "DFS", "BFS", "Recursion"],
+            problems: [
+                { name: "Invert Binary Tree",                           url: "https://leetcode.com/problems/invert-binary-tree/",                                   d: "Easy"   },
+                { name: "Maximum Depth of Binary Tree",                 url: "https://leetcode.com/problems/maximum-depth-of-binary-tree/",                         d: "Easy"   },
+                { name: "Diameter of Binary Tree",                      url: "https://leetcode.com/problems/diameter-of-binary-tree/",                              d: "Easy"   },
+                { name: "Balanced Binary Tree",                         url: "https://leetcode.com/problems/balanced-binary-tree/",                                 d: "Easy"   },
+                { name: "Same Tree",                                    url: "https://leetcode.com/problems/same-tree/",                                            d: "Easy"   },
+                { name: "Subtree of Another Tree",                      url: "https://leetcode.com/problems/subtree-of-another-tree/",                              d: "Easy"   },
+                { name: "Lowest Common Ancestor of a BST",              url: "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/",       d: "Medium" },
+                { name: "Binary Tree Level Order Traversal",            url: "https://leetcode.com/problems/binary-tree-level-order-traversal/",                    d: "Medium" },
+                { name: "Binary Tree Right Side View",                  url: "https://leetcode.com/problems/binary-tree-right-side-view/",                          d: "Medium" },
+                { name: "Count Good Nodes in Binary Tree",              url: "https://leetcode.com/problems/count-good-nodes-in-binary-tree/",                      d: "Medium" },
+                { name: "Validate Binary Search Tree",                  url: "https://leetcode.com/problems/validate-binary-search-tree/",                          d: "Medium" },
+                { name: "Kth Smallest Element in a BST",                url: "https://leetcode.com/problems/kth-smallest-element-in-a-bst/",                        d: "Medium" },
+                { name: "Construct Binary Tree (Preorder+Inorder)",     url: "https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/", d: "Medium" },
+                { name: "Binary Tree Maximum Path Sum",                 url: "https://leetcode.com/problems/binary-tree-maximum-path-sum/",                         d: "Hard"   },
+                { name: "Serialize and Deserialize Binary Tree",        url: "https://leetcode.com/problems/serialize-and-deserialize-binary-tree/",                d: "Hard"   }
+            ]
         },
         {
             id: "w7", week: 7,
             title: "Heap & Priority Queue + Backtracking",
             tag: "자료구조", tagColor: "#0891b2",
             status: "Upcoming",
-            desc: "힙은 'K번째 크기'나 '실시간 최솟값/최댓값' 문제에 쓰는 도구다. 백트래킹은 템플릿 하나를 암기하면 subset/combination/permutation을 모두 풀 수 있다. 두 주제 모두 패턴 암기가 핵심이므로 각각 3문제씩 직접 구현한다.",
+            desc: "힙은 'K번째 크기'나 '실시간 최솟값/최댓값' 문제에 쓰는 도구다. 백트래킹은 subset/combination/permutation 세 패턴을 직접 구현하며 익힌다.",
             topics: [
-                "최소/최대 힙 원리 — heapq 모듈, 삽입/삭제 O(log n)",
-                "Top K 패턴 — K번째 큰/작은 원소, K번 등장 원소",
-                "백트래킹 기본 템플릿 — choose → explore → unchoose 구조",
-                "백트래킹 3패턴 — Subsets(중복 없음), Combinations(순서 무관), Permutations(순서 있음)"
+                "Heap — heapq 모듈, 최소/최대 힙, 삽입/삭제 O(log n)",
+                "Top K 패턴 — K번째 크기 원소, K번 빈도 원소",
+                "백트래킹 — choose → explore → unchoose 구조",
+                "백트래킹 3패턴 — Subsets / Combinations / Permutations"
             ],
-            topicTags: ["Heap", "Priority Queue", "heapq", "Backtracking", "Subsets", "Combinations"],
-            problems: "Kth Largest Element · Top K Frequent Elements · Find Median from Data Stream · Subsets · Combination Sum · Permutations",
-            homework: "6문제 완료\n백트래킹 템플릿 코드 외워서 백지에 작성"
+            topicTags: ["Heap", "heapq", "Priority Queue", "Backtracking"],
+            sections: [
+                {
+                    title: "Heap & Priority Queue",
+                    problems: [
+                        { name: "Kth Largest Element in a Stream",  url: "https://leetcode.com/problems/kth-largest-element-in-a-stream/",  d: "Easy"   },
+                        { name: "Last Stone Weight",                 url: "https://leetcode.com/problems/last-stone-weight/",                d: "Easy"   },
+                        { name: "K Closest Points to Origin",        url: "https://leetcode.com/problems/k-closest-points-to-origin/",       d: "Medium" },
+                        { name: "Kth Largest Element in an Array",   url: "https://leetcode.com/problems/kth-largest-element-in-an-array/",  d: "Medium" },
+                        { name: "Task Scheduler",                    url: "https://leetcode.com/problems/task-scheduler/",                   d: "Medium" },
+                        { name: "Design Twitter",                    url: "https://leetcode.com/problems/design-twitter/",                   d: "Medium" },
+                        { name: "Find Median from Data Stream",      url: "https://leetcode.com/problems/find-median-from-data-stream/",     d: "Hard"   }
+                    ]
+                },
+                {
+                    title: "Backtracking",
+                    problems: [
+                        { name: "Subsets",                               url: "https://leetcode.com/problems/subsets/",                                d: "Medium" },
+                        { name: "Combination Sum",                       url: "https://leetcode.com/problems/combination-sum/",                       d: "Medium" },
+                        { name: "Permutations",                          url: "https://leetcode.com/problems/permutations/",                          d: "Medium" },
+                        { name: "Subsets II",                            url: "https://leetcode.com/problems/subsets-ii/",                            d: "Medium" },
+                        { name: "Combination Sum II",                    url: "https://leetcode.com/problems/combination-sum-ii/",                    d: "Medium" },
+                        { name: "Word Search",                           url: "https://leetcode.com/problems/word-search/",                           d: "Medium" },
+                        { name: "Palindrome Partitioning",               url: "https://leetcode.com/problems/palindrome-partitioning/",               d: "Medium" },
+                        { name: "Letter Combinations of a Phone Number", url: "https://leetcode.com/problems/letter-combinations-of-a-phone-number/", d: "Medium" },
+                        { name: "N-Queens",                              url: "https://leetcode.com/problems/n-queens/",                              d: "Hard"   }
+                    ]
+                }
+            ]
         },
         {
             id: "w8", week: 8,
             title: "Graphs",
             tag: "심화", tagColor: "#ea580c",
             status: "Upcoming",
-            desc: "그래프는 트리의 일반화다. 6주에서 익힌 DFS/BFS 재귀를 그래프에 그대로 적용한다. 방문 처리(visited)와 인접 리스트 표현이 핵심. Union-Find는 '연결 여부를 빠르게 확인'하는 별도 패턴으로 따로 익힌다.",
+            desc: "그래프는 트리의 일반화다. 6주에서 익힌 DFS/BFS 재귀를 그래프에 그대로 적용한다. 방문 처리(visited)와 인접 리스트 표현이 핵심. Union-Find는 '연결 여부를 O(α) 로 확인'하는 별도 패턴이다.",
             topics: [
-                "그래프 표현 — 인접 리스트 (dict/defaultdict), 인접 행렬",
-                "DFS on Graph — 방문 처리, 컴포넌트 탐색, 사이클 감지",
-                "BFS on Graph — 최단 거리, 레벨별 탐색",
-                "Union-Find (DSU) — find, union, 경로 압축, rank 최적화"
+                "그래프 표현 — 인접 리스트 (dict / defaultdict)",
+                "DFS/BFS on Graph — visited 처리, 컴포넌트 탐색, 사이클 감지",
+                "위상 정렬 (Topological Sort) — DAG, 파이프라인 순서 결정",
+                "Union-Find (DSU) — find, union, 경로 압축"
             ],
-            topicTags: ["Graph", "DFS", "BFS", "Union-Find", "Topological Sort", "Visited"],
-            problems: "Number of Islands · Clone Graph · Max Area of Island · Pacific Atlantic Water Flow · Course Schedule · Number of Connected Components",
-            homework: "6문제 완료\nNumber of Islands와 Course Schedule 직접 구현 필수"
+            topicTags: ["Graph", "DFS", "BFS", "Union-Find", "Topological Sort"],
+            problems: [
+                { name: "Number of Islands",                    url: "https://leetcode.com/problems/number-of-islands/",                   d: "Medium" },
+                { name: "Max Area of Island",                   url: "https://leetcode.com/problems/max-area-of-island/",                  d: "Medium" },
+                { name: "Clone Graph",                          url: "https://leetcode.com/problems/clone-graph/",                         d: "Medium" },
+                { name: "Walls and Gates",                      url: "https://neetcode.io/problems/islands-and-treasure",                  d: "Medium" },
+                { name: "Rotting Oranges",                      url: "https://leetcode.com/problems/rotting-oranges/",                     d: "Medium" },
+                { name: "Pacific Atlantic Water Flow",          url: "https://leetcode.com/problems/pacific-atlantic-water-flow/",         d: "Medium" },
+                { name: "Surrounded Regions",                   url: "https://leetcode.com/problems/surrounded-regions/",                  d: "Medium" },
+                { name: "Course Schedule",                      url: "https://leetcode.com/problems/course-schedule/",                     d: "Medium" },
+                { name: "Course Schedule II",                   url: "https://leetcode.com/problems/course-schedule-ii/",                  d: "Medium" },
+                { name: "Number of Connected Components",       url: "https://neetcode.io/problems/count-connected-components",            d: "Medium" },
+                { name: "Redundant Connection",                 url: "https://leetcode.com/problems/redundant-connection/",                d: "Medium" },
+                { name: "Word Ladder",                          url: "https://leetcode.com/problems/word-ladder/",                         d: "Hard"   }
+            ]
         },
         {
             id: "w9", week: 9,
             title: "Dynamic Programming",
             tag: "심화", tagColor: "#ea580c",
             status: "Upcoming",
-            desc: "DP는 '중복되는 부분 문제를 캐싱해서 재계산을 막는 것'이다. 패턴이 다양하므로 1D → 2D 순서로 접근한다. 각 문제에서 상태 정의(dp[i]가 무엇을 뜻하는지)를 먼저 명확히 하는 연습이 핵심이다.",
+            desc: "DP는 '중복되는 부분 문제를 캐싱해서 재계산을 막는 것'이다. 1D → 2D 순서로 접근하고, 각 문제에서 dp[i]가 무엇을 의미하는지 먼저 정의하는 습관을 기른다.",
             topics: [
-                "DP 두 가지 접근 — Top-Down(메모이제이션) vs Bottom-Up(타뷸레이션)",
-                "1D DP 패턴 — Fibonacci, Climbing Stairs, House Robber",
-                "2D DP 패턴 — Grid 경로, Longest Common Subsequence",
-                "0/1 Knapsack 패턴 — Coin Change, Target Sum"
+                "Top-Down (메모이제이션) vs Bottom-Up (타뷸레이션) 차이",
+                "1D DP — Fibonacci 계열, House Robber, 문자열 DP",
+                "2D DP — Grid 경로, Longest Common Subsequence",
+                "0/1 Knapsack 패턴 — Coin Change, Partition Equal Subset Sum"
             ],
             topicTags: ["DP", "Memoization", "Tabulation", "1D DP", "2D DP", "Knapsack"],
-            problems: "Climbing Stairs · House Robber · Longest Common Subsequence · Coin Change · Word Break · Longest Increasing Subsequence",
-            homework: "6문제 완료\n각 문제 dp 배열 정의(dp[i]의 의미) 주석으로 작성\nCoin Change BFS 풀이 vs DP 풀이 비교"
+            sections: [
+                {
+                    title: "1D DP",
+                    problems: [
+                        { name: "Climbing Stairs",                  url: "https://leetcode.com/problems/climbing-stairs/",                  d: "Easy"   },
+                        { name: "Min Cost Climbing Stairs",         url: "https://leetcode.com/problems/min-cost-climbing-stairs/",         d: "Easy"   },
+                        { name: "House Robber",                     url: "https://leetcode.com/problems/house-robber/",                     d: "Medium" },
+                        { name: "House Robber II",                  url: "https://leetcode.com/problems/house-robber-ii/",                  d: "Medium" },
+                        { name: "Longest Palindromic Substring",    url: "https://leetcode.com/problems/longest-palindromic-substring/",    d: "Medium" },
+                        { name: "Palindromic Substrings",           url: "https://leetcode.com/problems/palindromic-substrings/",           d: "Medium" },
+                        { name: "Decode Ways",                      url: "https://leetcode.com/problems/decode-ways/",                      d: "Medium" },
+                        { name: "Coin Change",                      url: "https://leetcode.com/problems/coin-change/",                      d: "Medium" },
+                        { name: "Maximum Product Subarray",         url: "https://leetcode.com/problems/maximum-product-subarray/",         d: "Medium" },
+                        { name: "Word Break",                       url: "https://leetcode.com/problems/word-break/",                       d: "Medium" },
+                        { name: "Longest Increasing Subsequence",   url: "https://leetcode.com/problems/longest-increasing-subsequence/",   d: "Medium" },
+                        { name: "Partition Equal Subset Sum",       url: "https://leetcode.com/problems/partition-equal-subset-sum/",       d: "Medium" }
+                    ]
+                },
+                {
+                    title: "2D DP",
+                    problems: [
+                        { name: "Unique Paths",                             url: "https://leetcode.com/problems/unique-paths/",                                     d: "Medium" },
+                        { name: "Longest Common Subsequence",               url: "https://leetcode.com/problems/longest-common-subsequence/",                       d: "Medium" },
+                        { name: "Best Time to Buy and Sell Stock w/ CD",    url: "https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/",    d: "Medium" },
+                        { name: "Coin Change II",                           url: "https://leetcode.com/problems/coin-change-ii/",                                   d: "Medium" },
+                        { name: "Target Sum",                               url: "https://leetcode.com/problems/target-sum/",                                       d: "Medium" },
+                        { name: "Interleaving String",                      url: "https://leetcode.com/problems/interleaving-string/",                              d: "Medium" },
+                        { name: "Longest Increasing Path in a Matrix",      url: "https://leetcode.com/problems/longest-increasing-path-in-a-matrix/",              d: "Hard"   },
+                        { name: "Distinct Subsequences",                    url: "https://leetcode.com/problems/distinct-subsequences/",                            d: "Hard"   },
+                        { name: "Edit Distance",                            url: "https://leetcode.com/problems/edit-distance/",                                    d: "Medium" },
+                        { name: "Burst Balloons",                           url: "https://leetcode.com/problems/burst-balloons/",                                   d: "Hard"   },
+                        { name: "Regular Expression Matching",              url: "https://leetcode.com/problems/regular-expression-matching/",                      d: "Hard"   }
+                    ]
+                }
+            ]
         },
         {
             id: "w10", week: 10,
             title: "Mock Interview",
             tag: "실전", tagColor: "#16a34a",
             status: "Upcoming",
-            desc: "10주간 쌓은 것을 실전으로 검증한다. 45분 타이머를 켜고 문제를 풀면서 생각을 소리 내어 말하는 연습을 한다. 인터뷰어에게 내 사고 과정을 전달하는 것이 코딩 인터뷰의 핵심이다. 엣지 케이스 처리와 복잡도 분석 발표까지 완성한다.",
+            desc: "10주간 쌓은 것을 실전으로 검증한다. 45분 타이머를 켜고 문제를 풀면서 생각을 소리 내어 말하는 연습을 한다. 코딩 인터뷰는 정답만큼 사고 과정 전달이 중요하다.",
             topics: [
                 "Think Aloud — 문제 이해 → 예제 검증 → 접근법 설명 → 구현 → 복잡도 분석",
-                "엣지 케이스 처리 — 빈 배열, 음수, 중복, 단일 원소 등 항상 확인",
-                "45분 타이머 실전 시뮬레이션 — 막혀도 힌트 없이 25분 이상 버티기",
-                "복잡도 발표 — '이 풀이는 시간 O(n log n), 공간 O(n)입니다' 형태로 정리"
+                "엣지 케이스 처리 — 빈 배열, 음수, 중복, 단일 원소 항상 확인",
+                "45분 타이머 실전 시뮬레이션",
+                "복잡도 발표 — 시간/공간 복잡도를 구두로 설명하는 연습"
             ],
-            topicTags: ["Mock Interview", "Think Aloud", "Edge Cases", "Communication", "Timer"],
-            problems: "주차별 미완성 문제 재도전 2문제 + 랜덤 Medium 2문제 (타이머 ON)",
-            homework: "LeetCode Weekly Contest 1회 참가\n또는 스터디원/친구와 모의 인터뷰 1회 진행 (각자 문제 내기)"
+            topicTags: ["Mock Interview", "Think Aloud", "Edge Cases", "Timer"],
+            problems: [
+                { name: "NeetCode 랜덤 Medium — 타이머 ON", url: "https://neetcode.io/practice", d: "Medium" }
+            ]
         }
     ];
-
-    function tagBadge(tag, color) {
-        return `<span style="background:${color}18;color:${color};border:1px solid ${color}44;" class="text-[10px] font-bold px-2.5 py-0.5 rounded-md flex-shrink-0">${tag}</span>`;
-    }
 
     // Build overview list
     const overviewList = document.getElementById('overview-list');
@@ -311,12 +499,15 @@
         const isDone = s.status === 'Completed';
         const isIn   = s.status === 'In Progress';
         if (isDone) completedCount++;
+
+        // count problems
+        let problemCount = 0;
+        if (s.problems) problemCount = s.problems.length;
+        else if (s.sections) s.sections.forEach(sec => problemCount += sec.problems.length);
+
         const row = document.createElement('div');
         row.className = `session-row flex items-center gap-4 px-5 py-4 ${i < weeks.length - 1 ? 'border-b border-gray-50' : ''}`;
-        row.onclick = () => {
-            const btn = document.querySelectorAll('.tab-btn')[i + 1];
-            switchTab(s.id, btn);
-        };
+        row.onclick = () => { const btn = document.querySelectorAll('.tab-btn')[i + 1]; switchTab(s.id, btn); };
         row.innerHTML = `
             <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 font-bold text-sm
                 ${isDone ? 'bg-green-700 text-white' : isIn ? 'bg-orange-400 text-white' : 'bg-gray-100 text-gray-400'}">
@@ -324,17 +515,16 @@
             </div>
             <div class="flex-grow min-w-0">
                 <p class="text-sm font-bold ${isDone ? 'line-through text-gray-400' : 'text-gray-800'}">${s.title}</p>
-                <p class="text-xs text-gray-400 truncate mt-0.5">${s.problems.split(' · ')[0]} 외</p>
+                <p class="text-xs text-gray-400 mt-0.5">${problemCount > 1 ? `${problemCount}문제` : ''}</p>
             </div>
-            ${tagBadge(s.tag, s.tagColor)}
-        `;
+            ${tagBadge(s.tag, s.tagColor)}`;
         overviewList.appendChild(row);
     });
 
-    // Update progress bar
+    // Update progress
     const pct = Math.round(completedCount / weeks.length * 100);
     document.getElementById('progress-bar').style.width = pct + '%';
-    document.querySelector('.text-green-700.font-extrabold').textContent = `${completedCount} / ${weeks.length} Weeks`;
+    document.getElementById('progress-label').textContent = `${completedCount} / ${weeks.length} Weeks`;
 
     // Build each week panel
     weeks.forEach(s => {
@@ -348,13 +538,27 @@
             ? `<div class="flex items-center gap-2 text-orange-500 font-bold text-sm"><div class="w-6 h-6 bg-orange-400 rounded-full flex items-center justify-center"><i class="fas fa-spinner fa-spin text-white text-[10px]"></i></div> In Progress</div>`
             : `<div class="flex items-center gap-2 text-gray-400 font-bold text-sm"><div class="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center"><i class="far fa-circle text-gray-400 text-[10px]"></i></div> Upcoming</div>`;
 
-        const hwLines = s.homework.split('\n').map(l =>
-            `<li class="flex items-start gap-2"><span class="mt-1.5 w-1 h-1 bg-yellow-400 rounded-full flex-shrink-0"></span>${l}</li>`
-        ).join('');
+        // Resources section (only Week 1)
+        const resourcesHtml = s.resources ? `
+            <div class="px-6 py-5 border-b border-gray-50">
+                <p class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3 flex items-center gap-2">
+                    <i class="fas fa-play-circle text-purple-500"></i> RESOURCES
+                </p>
+                ${s.resources.map(r => `
+                    <a href="${r.url}" target="_blank"
+                       class="flex items-center gap-2 text-sm text-blue-700 hover:underline">
+                        <i class="fas fa-external-link-alt text-[10px]"></i>${r.name}
+                    </a>`).join('')}
+            </div>` : '';
 
-        const problemBadges = s.problems.split(' · ').map(p =>
-            `<span class="bg-gray-100 text-gray-600 text-[11px] font-semibold px-2.5 py-1 rounded-md">${p}</span>`
-        ).join('');
+        // Problems section
+        const problemsHtml = `
+            <div class="px-0 py-0 border-b border-gray-50">
+                <p class="text-[10px] font-black uppercase tracking-widest text-gray-400 px-6 pt-5 pb-3 flex items-center gap-2">
+                    <i class="fas fa-code text-blue-500"></i> PROBLEMS
+                </p>
+                ${s.sections ? probSections(s.sections) : probTable(s.problems)}
+            </div>`;
 
         panel.innerHTML = `
         <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
@@ -382,20 +586,8 @@
                     ${s.topicTags.map(t => `<span class="bg-gray-100 text-gray-500 text-[10px] font-semibold px-2.5 py-1 rounded-md">${t}</span>`).join('')}
                 </div>
             </div>
-            <div class="px-6 py-5 border-b border-gray-50">
-                <p class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3 flex items-center gap-2">
-                    <i class="fas fa-code text-blue-500"></i> PROBLEMS
-                </p>
-                <div class="flex flex-wrap gap-1.5">${problemBadges}</div>
-            </div>
-            <div class="px-6 py-5 border-b border-gray-50">
-                <p class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3 flex items-center gap-2">
-                    <i class="fas fa-pencil-alt text-yellow-500"></i> HOMEWORK
-                </p>
-                <div class="bg-yellow-50 border border-yellow-100 rounded-xl p-4">
-                    <ul class="space-y-1.5 text-sm text-gray-700 leading-relaxed">${hwLines}</ul>
-                </div>
-            </div>
+            ${resourcesHtml}
+            ${problemsHtml}
             <div class="px-6 py-4">${statusBar}</div>
         </div>`;
     });
@@ -404,13 +596,9 @@
         document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         document.getElementById(`panel-${id}`).classList.add('active');
-        if (btn) {
-            btn.classList.add('active');
-            btn.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
-        }
+        if (btn) { btn.classList.add('active'); btn.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' }); }
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     </script>
-
 </body>
 </html>
