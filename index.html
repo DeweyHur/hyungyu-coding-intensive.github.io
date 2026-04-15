@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>코딩 인터뷰 집중반 | 배현규</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        body { background-color: #f0f2f5; }
+        .tab-scroll::-webkit-scrollbar { display: none; }
+        .tab-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+        .tab-btn { transition: all 0.15s ease; white-space: nowrap; }
+        .tab-btn.active { background-color: #15803d; color: #fff; }
+        .tab-btn:not(.active) { color: #6b7280; }
+        .tab-btn:not(.active):hover { background-color: #e5e7eb; color: #374151; }
+        .tab-panel { display: none; }
+        .tab-panel.active { display: block; }
+        .session-row { transition: box-shadow 0.15s; cursor: pointer; }
+        .session-row:hover { box-shadow: 0 0 0 2px #15803d33; }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- TOP NAVBAR -->
+    <nav class="bg-[#111827] text-white px-6 py-3 flex items-center gap-3 text-sm">
+        <span class="font-black tracking-tight text-white text-base">코딩 인터뷰 집중반</span>
+        <span class="text-gray-500">|</span>
+        <span class="text-gray-400 text-xs">NeetCode Roadmap 기반 · 10주 완성 프로그램</span>
+    </nav>
+
+    <!-- HERO -->
+    <div class="bg-gradient-to-b from-[#14532d] to-[#15803d] text-white pt-14 pb-24 px-6 text-center">
+        <span class="bg-white/15 border border-white/20 text-white text-[10px] font-bold tracking-[0.18em] uppercase px-4 py-1.5 rounded-full inline-block mb-5">
+            10-WEEK CODING INTENSIVE
+        </span>
+        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mt-1">배현규의 코딩 인터뷰</h1>
+        <p class="text-green-200 mt-3 text-sm font-medium opacity-90">알고리즘 · 자료구조 · NeetCode Roadmap · Edge AI 직무 대비</p>
+        <a href="https://neetcode.io/roadmap" target="_blank"
+           class="inline-flex items-center gap-2 mt-5 bg-white/20 hover:bg-white/30 border border-white/30 text-white text-xs font-bold px-5 py-2 rounded-full transition-all">
+            <i class="fas fa-external-link-alt text-[10px]"></i> neetcode.io/roadmap
+        </a>
+    </div>
+
+    <!-- STUDENT INFO BAR -->
+    <div class="max-w-3xl mx-auto -mt-12 bg-[#e9ebee] rounded-2xl shadow grid grid-cols-2 md:grid-cols-4 overflow-hidden border border-gray-200 relative z-10">
+        <div class="p-5 text-center border-r border-gray-300">
+            <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-1">Student</p>
+            <p class="font-bold text-gray-800 text-sm">배현규</p>
+        </div>
+        <div class="p-5 text-center border-r border-gray-300">
+            <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-1">Background</p>
+            <p class="font-bold text-gray-800 text-sm">통계학과 · AI 연구</p>
+        </div>
+        <div class="p-5 text-center border-r border-gray-300">
+            <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-1">Target</p>
+            <p class="font-bold text-gray-800 text-sm">Edge AI · Factory AI</p>
+        </div>
+        <div class="p-5 text-center">
+            <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-1">Format</p>
+            <p class="font-bold text-gray-800 text-sm">10주 집중</p>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="max-w-3xl mx-auto mt-8 px-4 pb-20">
+
+        <!-- TAB NAV -->
+        <div class="tab-scroll flex gap-1.5 overflow-x-auto pb-1 mb-5">
+            <button class="tab-btn active text-xs font-bold px-4 py-2 rounded-full" onclick="switchTab('overview', this)">Overview</button>
+            <button class="tab-btn text-xs font-bold px-4 py-2 rounded-full" onclick="switchTab('w1', this)">1&nbsp;기초 + Big O</button>
+            <button class="tab-btn text-xs font-bold px-4 py-2 rounded-full" onclick="switchTab('w2', this)">2&nbsp;Array & Hashing</button>
+            <button class="tab-btn text-xs font-bold px-4 py-2 rounded-full" onclick="switchTab('w3', this)">3&nbsp;Two Pointers + SW</button>
+            <button class="tab-btn text-xs font-bold px-4 py-2 rounded-full" onclick="switchTab('w4', this)">4&nbsp;Stack + Linked List</button>
+            <button class="tab-btn text-xs font-bold px-4 py-2 rounded-full" onclick="switchTab('w5', this)">5&nbsp;Binary Search</button>
+            <button class="tab-btn text-xs font-bold px-4 py-2 rounded-full" onclick="switchTab('w6', this)">6&nbsp;Trees</button>
+            <button class="tab-btn text-xs font-bold px-4 py-2 rounded-full" onclick="switchTab('w7', this)">7&nbsp;Heap + Backtracking</button>
+            <button class="tab-btn text-xs font-bold px-4 py-2 rounded-full" onclick="switchTab('w8', this)">8&nbsp;Graphs</button>
+            <button class="tab-btn text-xs font-bold px-4 py-2 rounded-full" onclick="switchTab('w9', this)">9&nbsp;DP</button>
+            <button class="tab-btn text-xs font-bold px-4 py-2 rounded-full" onclick="switchTab('w10', this)">10&nbsp;Mock Interview</button>
+        </div>
+
+        <!-- OVERVIEW PANEL -->
+        <div id="panel-overview" class="tab-panel active space-y-4">
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                <div class="flex justify-between items-center mb-3">
+                    <span class="text-sm font-bold text-gray-700">Progress</span>
+                    <span class="text-green-700 font-extrabold text-sm">0 / 10 Weeks</span>
+                </div>
+                <div class="w-full bg-gray-100 rounded-full h-2">
+                    <div class="bg-green-700 h-2 rounded-full" style="width: 0%" id="progress-bar"></div>
+                </div>
+            </div>
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                <div id="overview-list"></div>
+            </div>
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                <h2 class="text-base font-extrabold text-gray-800 mb-4">커리큘럼 설계 배경</h2>
+                <table class="w-full text-sm text-gray-600 border-separate border-spacing-y-1">
+                    <tr>
+                        <td class="font-bold text-gray-500 pr-4 align-top py-1.5 w-28">학력</td>
+                        <td class="py-1.5">통계학과 졸업 · 학부 연구생 1년 반 (AI 연구)</td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold text-gray-500 pr-4 align-top py-1.5">연구 경험</td>
+                        <td class="py-1.5">DCASE 2024/2025 이상음 탐지 · GNN/LLM 추천 시스템 · LLM Hallucination · GNN 분자 독성 분석</td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold text-gray-500 pr-4 align-top py-1.5">현재</td>
+                        <td class="py-1.5">상공회의소 Edge AI 부트캠프 (통신 · 자율주행 · AI 프로젝트)</td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold text-gray-500 pr-4 align-top py-1.5">목표 직무</td>
+                        <td class="py-1.5">Factory AI / Industry AI · Sensor Fusion 활용 Edge AI 엔지니어</td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold text-gray-500 pr-4 align-top py-1.5">제거 항목</td>
+                        <td class="py-1.5">Tries (출제 빈도 낮음) · Bit Manipulation (산업 AI 직무 기준 ROI 최하)</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- WEEK PANELS (generated by JS) -->
+        <div id="panel-w1" class="tab-panel"></div>
+        <div id="panel-w2" class="tab-panel"></div>
+        <div id="panel-w3" class="tab-panel"></div>
+        <div id="panel-w4" class="tab-panel"></div>
+        <div id="panel-w5" class="tab-panel"></div>
+        <div id="panel-w6" class="tab-panel"></div>
+        <div id="panel-w7" class="tab-panel"></div>
+        <div id="panel-w8" class="tab-panel"></div>
+        <div id="panel-w9" class="tab-panel"></div>
+        <div id="panel-w10" class="tab-panel"></div>
+    </div>
+
+    <script>
+    const weeks = [
+        {
+            id: "w1", week: 1,
+            title: "코딩 기초 + Big O",
+            tag: "기초", tagColor: "#7c3aed",
+            status: "Upcoming",
+            desc: "Python 문법을 빠르게 훑고, 코딩 인터뷰의 언어인 Big O 표기법을 완전히 잡는다. 시간/공간 복잡도를 코드를 보고 바로 읽어내는 눈을 기른다. 이론보다 실제 코드를 직접 작성하고 테스트하는 데 집중.",
+            topics: [
+                "Python 핵심 문법 — 리스트, 딕셔너리, 집합, 조건문, 반복문, 함수",
+                "Big O 표기법 — O(1), O(log n), O(n), O(n log n), O(n²) 직관적으로 이해",
+                "시간/공간 복잡도 분석 — 코드 보고 복잡도 즉시 읽기 연습",
+                "NeetCode Big O 영상 정주행 + 간단한 예제 직접 구현"
+            ],
+            topicTags: ["Python", "Big O", "Time Complexity", "Space Complexity"],
+            problems: "Two Sum (Easy) · Contains Duplicate (Easy) · 직접 선택 1문제",
+            homework: "NeetCode Big O 영상 시청 완료\n풀어본 문제 각각 복잡도 분석 코멘트 달기\nPython heapq, collections.defaultdict, deque 사용법 숙지"
+        },
+        {
+            id: "w2", week: 2,
+            title: "Array & Hashing",
+            tag: "기초", tagColor: "#7c3aed",
+            status: "Upcoming",
+            desc: "해시맵과 해시셋은 코딩 인터뷰에서 가장 많이 쓰이는 도구다. O(n) 풀이를 O(1) 조회로 끌어내리는 '해시로 교환' 패턴을 확실히 익힌다. Contains Duplicate, Two Sum, Valid Anagram 세 문제가 이 주의 핵심.",
+            topics: [
+                "배열 기본 연산 — 인덱싱, 슬라이싱, 정렬, 빈도 카운팅",
+                "HashMap (dict) 원리 — 키-값 저장, O(1) 조회, 충돌 처리 개념",
+                "HashSet (set) 활용 — 중복 제거, O(1) 포함 여부 확인",
+                "빈도 카운팅 패턴 — collections.Counter 활용법"
+            ],
+            topicTags: ["Array", "HashMap", "HashSet", "Counter", "Frequency"],
+            problems: "Contains Duplicate · Valid Anagram · Two Sum · Group Anagrams · Top K Frequent Elements",
+            homework: "위 5문제 직접 풀기 (못 풀면 풀이 보고 직접 다시 작성)\n각 풀이 시간/공간 복잡도 작성"
+        },
+        {
+            id: "w3", week: 3,
+            title: "Two Pointers + Sliding Window",
+            tag: "기초", tagColor: "#7c3aed",
+            status: "Upcoming",
+            desc: "두 포인터와 슬라이딩 윈도우는 같은 뿌리에서 나온 패턴이다. 배열/문자열에서 O(n²)을 O(n)으로 줄이는 핵심 기법. 두 패턴을 함께 익혀야 어느 상황에 뭘 쓸지 구분이 된다.",
+            topics: [
+                "Two Pointers — left/right 수렴형 (정렬된 배열), 동일 방향형",
+                "Sliding Window 고정 크기 — 윈도우를 오른쪽으로 한 칸씩 이동",
+                "Sliding Window 가변 크기 — 조건 만족할 때 expand, 위반 시 shrink",
+                "언제 두 포인터, 언제 슬라이딩 윈도우인지 구분 기준 정리"
+            ],
+            topicTags: ["Two Pointers", "Sliding Window", "O(n)", "Window Expand/Shrink"],
+            problems: "Valid Palindrome · Two Sum II · Best Time to Buy and Sell Stock · Longest Substring Without Repeating Characters · Minimum Window Substring",
+            homework: "5문제 완료\nSliding Window 가변 크기 템플릿 코드 암기 (직접 써보기)"
+        },
+        {
+            id: "w4", week: 4,
+            title: "Stack + Linked List",
+            tag: "기초", tagColor: "#7c3aed",
+            status: "Upcoming",
+            desc: "스택은 '가장 최근 것을 추적'하는 패턴의 핵심. 연결 리스트는 포인터 조작 능력을 기르는 기초 자료구조. 둘 다 선형이지만 용도가 완전히 다르므로 각각 2~3문제씩 패턴을 익힌다.",
+            topics: [
+                "Stack — LIFO 원리, Python list 스택 활용, 단조 스택(Monotonic Stack) 개념",
+                "괄호 매칭 패턴 — 스택으로 여는/닫는 괄호 대응",
+                "단일 연결 리스트 구조 — Node, head, next 포인터",
+                "연결 리스트 핵심 기법 — 두 포인터(fast/slow), 역순 변환, 더미 노드"
+            ],
+            topicTags: ["Stack", "Linked List", "LIFO", "Pointer", "Fast/Slow Pointers"],
+            problems: "Valid Parentheses · Min Stack · Reverse Linked List · Merge Two Sorted Lists · Linked List Cycle",
+            homework: "5문제 완료\nReverse Linked List 외워서 백지에 다시 쓰기 (포인터 흐름 이해 필수)"
+        },
+        {
+            id: "w5", week: 5,
+            title: "Binary Search",
+            tag: "자료구조", tagColor: "#0891b2",
+            status: "Upcoming",
+            desc: "이분 탐색은 '정렬된 공간에서 절반씩 버리기'다. 기본 템플릿을 완벽히 외우고, 조건에 따른 lo/hi 이동 방향을 틀리지 않도록 훈련한다. Parametric Search(답에 대한 이분 탐색)까지 이해하면 응용 범위가 크게 늘어난다.",
+            topics: [
+                "이분 탐색 기본 템플릿 — lo, hi, mid = (lo+hi)//2, 종료 조건",
+                "lo/hi 이동 패턴 — lo=mid+1 vs hi=mid-1 언제 어떻게 쓰는지",
+                "회전 정렬 배열에서 이분 탐색 — 어느 쪽이 정렬됐는지 판단",
+                "Parametric Search — 최솟값/최댓값을 이분 탐색으로 구하는 패턴"
+            ],
+            topicTags: ["Binary Search", "Sorted Array", "Rotated Array", "Parametric Search"],
+            problems: "Binary Search · Search a 2D Matrix · Koko Eating Bananas · Find Minimum in Rotated Sorted Array · Search in Rotated Sorted Array",
+            homework: "5문제 완료\n이분 탐색 템플릿 백지에 작성 (off-by-one 없이)"
+        },
+        {
+            id: "w6", week: 6,
+            title: "Trees",
+            tag: "자료구조", tagColor: "#0891b2",
+            status: "Upcoming",
+            desc: "트리는 재귀적 구조이므로 재귀적 사고를 이 주에 완전히 익혀야 한다. DFS(전위/중위/후위)와 BFS(레벨 순회)의 차이를 이해하고, '왼쪽과 오른쪽에서 값을 받아 현재 노드에서 무엇을 할지'라는 재귀 설계 패턴을 습득한다.",
+            topics: [
+                "이진 트리 구조 — TreeNode 클래스, 높이, 깊이, 균형 개념",
+                "DFS 3종 순회 — 전위(pre), 중위(in), 후위(post) 재귀 구현",
+                "BFS 레벨 순회 — deque, 레벨별 처리 패턴",
+                "재귀 설계 패턴 — 왼쪽/오른쪽 결과를 현재 노드에서 합치기"
+            ],
+            topicTags: ["Binary Tree", "DFS", "BFS", "Recursion", "Level Order"],
+            problems: "Invert Binary Tree · Maximum Depth · Diameter of Binary Tree · Balanced Binary Tree · Lowest Common Ancestor · Binary Tree Level Order Traversal",
+            homework: "6문제 완료\nLCA와 Maximum Depth 재귀 흐름 손으로 그려보기"
+        },
+        {
+            id: "w7", week: 7,
+            title: "Heap & Priority Queue + Backtracking",
+            tag: "자료구조", tagColor: "#0891b2",
+            status: "Upcoming",
+            desc: "힙은 'K번째 크기'나 '실시간 최솟값/최댓값' 문제에 쓰는 도구다. 백트래킹은 템플릿 하나를 암기하면 subset/combination/permutation을 모두 풀 수 있다. 두 주제 모두 패턴 암기가 핵심이므로 각각 3문제씩 직접 구현한다.",
+            topics: [
+                "최소/최대 힙 원리 — heapq 모듈, 삽입/삭제 O(log n)",
+                "Top K 패턴 — K번째 큰/작은 원소, K번 등장 원소",
+                "백트래킹 기본 템플릿 — choose → explore → unchoose 구조",
+                "백트래킹 3패턴 — Subsets(중복 없음), Combinations(순서 무관), Permutations(순서 있음)"
+            ],
+            topicTags: ["Heap", "Priority Queue", "heapq", "Backtracking", "Subsets", "Combinations"],
+            problems: "Kth Largest Element · Top K Frequent Elements · Find Median from Data Stream · Subsets · Combination Sum · Permutations",
+            homework: "6문제 완료\n백트래킹 템플릿 코드 외워서 백지에 작성"
+        },
+        {
+            id: "w8", week: 8,
+            title: "Graphs",
+            tag: "심화", tagColor: "#ea580c",
+            status: "Upcoming",
+            desc: "그래프는 트리의 일반화다. 6주에서 익힌 DFS/BFS 재귀를 그래프에 그대로 적용한다. 방문 처리(visited)와 인접 리스트 표현이 핵심. Union-Find는 '연결 여부를 빠르게 확인'하는 별도 패턴으로 따로 익힌다.",
+            topics: [
+                "그래프 표현 — 인접 리스트 (dict/defaultdict), 인접 행렬",
+                "DFS on Graph — 방문 처리, 컴포넌트 탐색, 사이클 감지",
+                "BFS on Graph — 최단 거리, 레벨별 탐색",
+                "Union-Find (DSU) — find, union, 경로 압축, rank 최적화"
+            ],
+            topicTags: ["Graph", "DFS", "BFS", "Union-Find", "Topological Sort", "Visited"],
+            problems: "Number of Islands · Clone Graph · Max Area of Island · Pacific Atlantic Water Flow · Course Schedule · Number of Connected Components",
+            homework: "6문제 완료\nNumber of Islands와 Course Schedule 직접 구현 필수"
+        },
+        {
+            id: "w9", week: 9,
+            title: "Dynamic Programming",
+            tag: "심화", tagColor: "#ea580c",
+            status: "Upcoming",
+            desc: "DP는 '중복되는 부분 문제를 캐싱해서 재계산을 막는 것'이다. 패턴이 다양하므로 1D → 2D 순서로 접근한다. 각 문제에서 상태 정의(dp[i]가 무엇을 뜻하는지)를 먼저 명확히 하는 연습이 핵심이다.",
+            topics: [
+                "DP 두 가지 접근 — Top-Down(메모이제이션) vs Bottom-Up(타뷸레이션)",
+                "1D DP 패턴 — Fibonacci, Climbing Stairs, House Robber",
+                "2D DP 패턴 — Grid 경로, Longest Common Subsequence",
+                "0/1 Knapsack 패턴 — Coin Change, Target Sum"
+            ],
+            topicTags: ["DP", "Memoization", "Tabulation", "1D DP", "2D DP", "Knapsack"],
+            problems: "Climbing Stairs · House Robber · Longest Common Subsequence · Coin Change · Word Break · Longest Increasing Subsequence",
+            homework: "6문제 완료\n각 문제 dp 배열 정의(dp[i]의 의미) 주석으로 작성\nCoin Change BFS 풀이 vs DP 풀이 비교"
+        },
+        {
+            id: "w10", week: 10,
+            title: "Mock Interview",
+            tag: "실전", tagColor: "#16a34a",
+            status: "Upcoming",
+            desc: "10주간 쌓은 것을 실전으로 검증한다. 45분 타이머를 켜고 문제를 풀면서 생각을 소리 내어 말하는 연습을 한다. 인터뷰어에게 내 사고 과정을 전달하는 것이 코딩 인터뷰의 핵심이다. 엣지 케이스 처리와 복잡도 분석 발표까지 완성한다.",
+            topics: [
+                "Think Aloud — 문제 이해 → 예제 검증 → 접근법 설명 → 구현 → 복잡도 분석",
+                "엣지 케이스 처리 — 빈 배열, 음수, 중복, 단일 원소 등 항상 확인",
+                "45분 타이머 실전 시뮬레이션 — 막혀도 힌트 없이 25분 이상 버티기",
+                "복잡도 발표 — '이 풀이는 시간 O(n log n), 공간 O(n)입니다' 형태로 정리"
+            ],
+            topicTags: ["Mock Interview", "Think Aloud", "Edge Cases", "Communication", "Timer"],
+            problems: "주차별 미완성 문제 재도전 2문제 + 랜덤 Medium 2문제 (타이머 ON)",
+            homework: "LeetCode Weekly Contest 1회 참가\n또는 스터디원/친구와 모의 인터뷰 1회 진행 (각자 문제 내기)"
+        }
+    ];
+
+    function tagBadge(tag, color) {
+        return `<span style="background:${color}18;color:${color};border:1px solid ${color}44;" class="text-[10px] font-bold px-2.5 py-0.5 rounded-md flex-shrink-0">${tag}</span>`;
+    }
+
+    // Build overview list
+    const overviewList = document.getElementById('overview-list');
+    let completedCount = 0;
+    weeks.forEach((s, i) => {
+        const isDone = s.status === 'Completed';
+        const isIn   = s.status === 'In Progress';
+        if (isDone) completedCount++;
+        const row = document.createElement('div');
+        row.className = `session-row flex items-center gap-4 px-5 py-4 ${i < weeks.length - 1 ? 'border-b border-gray-50' : ''}`;
+        row.onclick = () => {
+            const btn = document.querySelectorAll('.tab-btn')[i + 1];
+            switchTab(s.id, btn);
+        };
+        row.innerHTML = `
+            <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 font-bold text-sm
+                ${isDone ? 'bg-green-700 text-white' : isIn ? 'bg-orange-400 text-white' : 'bg-gray-100 text-gray-400'}">
+                ${isDone ? '<i class="fas fa-check text-xs"></i>' : isIn ? '<i class="fas fa-spinner fa-spin text-xs"></i>' : s.week}
+            </div>
+            <div class="flex-grow min-w-0">
+                <p class="text-sm font-bold ${isDone ? 'line-through text-gray-400' : 'text-gray-800'}">${s.title}</p>
+                <p class="text-xs text-gray-400 truncate mt-0.5">${s.problems.split(' · ')[0]} 외</p>
+            </div>
+            ${tagBadge(s.tag, s.tagColor)}
+        `;
+        overviewList.appendChild(row);
+    });
+
+    // Update progress bar
+    const pct = Math.round(completedCount / weeks.length * 100);
+    document.getElementById('progress-bar').style.width = pct + '%';
+    document.querySelector('.text-green-700.font-extrabold').textContent = `${completedCount} / ${weeks.length} Weeks`;
+
+    // Build each week panel
+    weeks.forEach(s => {
+        const isDone = s.status === 'Completed';
+        const isIn   = s.status === 'In Progress';
+        const panel  = document.getElementById(`panel-${s.id}`);
+
+        const statusBar = isDone
+            ? `<div class="flex items-center gap-2 text-emerald-600 font-bold text-sm"><div class="w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center"><i class="fas fa-check text-white text-[10px]"></i></div> Completed</div>`
+            : isIn
+            ? `<div class="flex items-center gap-2 text-orange-500 font-bold text-sm"><div class="w-6 h-6 bg-orange-400 rounded-full flex items-center justify-center"><i class="fas fa-spinner fa-spin text-white text-[10px]"></i></div> In Progress</div>`
+            : `<div class="flex items-center gap-2 text-gray-400 font-bold text-sm"><div class="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center"><i class="far fa-circle text-gray-400 text-[10px]"></i></div> Upcoming</div>`;
+
+        const hwLines = s.homework.split('\n').map(l =>
+            `<li class="flex items-start gap-2"><span class="mt-1.5 w-1 h-1 bg-yellow-400 rounded-full flex-shrink-0"></span>${l}</li>`
+        ).join('');
+
+        const problemBadges = s.problems.split(' · ').map(p =>
+            `<span class="bg-gray-100 text-gray-600 text-[11px] font-semibold px-2.5 py-1 rounded-md">${p}</span>`
+        ).join('');
+
+        panel.innerHTML = `
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+            <div class="px-6 pt-6 pb-5 border-b border-gray-50">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-[10px] font-black uppercase tracking-widest text-green-700">Week ${s.week}</span>
+                    ${tagBadge(s.tag, s.tagColor)}
+                </div>
+                <h2 class="text-xl font-extrabold text-gray-900 tracking-tight leading-snug">${s.title}</h2>
+            </div>
+            <div class="px-6 py-5 border-b border-gray-50">
+                <div class="bg-gray-50 rounded-xl p-4 text-sm text-gray-600 leading-relaxed">${s.desc}</div>
+            </div>
+            <div class="px-6 py-5 border-b border-gray-50">
+                <p class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3 flex items-center gap-2">
+                    <i class="fas fa-list-ul text-green-600"></i> TOPICS
+                </p>
+                <ul class="space-y-2.5 mb-4">
+                    ${s.topics.map(t => `
+                    <li class="flex items-start gap-3 text-sm text-gray-700">
+                        <span class="w-1.5 h-1.5 bg-green-500 rounded-full mt-2 flex-shrink-0"></span>${t}
+                    </li>`).join('')}
+                </ul>
+                <div class="flex flex-wrap gap-1.5 mt-3">
+                    ${s.topicTags.map(t => `<span class="bg-gray-100 text-gray-500 text-[10px] font-semibold px-2.5 py-1 rounded-md">${t}</span>`).join('')}
+                </div>
+            </div>
+            <div class="px-6 py-5 border-b border-gray-50">
+                <p class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3 flex items-center gap-2">
+                    <i class="fas fa-code text-blue-500"></i> PROBLEMS
+                </p>
+                <div class="flex flex-wrap gap-1.5">${problemBadges}</div>
+            </div>
+            <div class="px-6 py-5 border-b border-gray-50">
+                <p class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3 flex items-center gap-2">
+                    <i class="fas fa-pencil-alt text-yellow-500"></i> HOMEWORK
+                </p>
+                <div class="bg-yellow-50 border border-yellow-100 rounded-xl p-4">
+                    <ul class="space-y-1.5 text-sm text-gray-700 leading-relaxed">${hwLines}</ul>
+                </div>
+            </div>
+            <div class="px-6 py-4">${statusBar}</div>
+        </div>`;
+    });
+
+    function switchTab(id, btn) {
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(`panel-${id}`).classList.add('active');
+        if (btn) {
+            btn.classList.add('active');
+            btn.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    </script>
+
+</body>
+</html>
